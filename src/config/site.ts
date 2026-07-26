@@ -15,9 +15,9 @@ export const siteConfig = {
     twitter: "https://twitter.com/yourusername",
   },
   navigation: [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "About", href: "/about" },
+    { label: "Projects", href: "/projects" },
+    { label: "Contact", href: "/contact" },
   ] as const,
 } as const;
 
