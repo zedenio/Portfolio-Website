@@ -16,10 +16,10 @@ interface MorphicNavbarProps {
 }
 
 const NAV_ITEMS: Record<string, NavItem> = {
-  "/": { name: "home" },
-  "/projects": { name: "projects" },
-  "/blog": { name: "blog" },
-  "/about": { name: "about" },
+  "/": { name: "HOME" },
+  "/projects": { name: "PROJECTS" },
+  "/blog": { name: "BLOG" },
+  "/about": { name: "ABOUT" },
 };
 
 export function MorphicNavbar({
@@ -59,7 +59,7 @@ export function MorphicNavbar({
               return (
                 <Link
                   className={clsx(
-                    "flex items-center justify-center px-3 py-1 text-xs font-medium transition-all duration-300",
+                    "flex items-center justify-center px-3 py-1 text-[0.7rem] font-bold transition-all duration-300",
                     isActive
                       ? "mx-1 rounded-full bg-[#111111] px-2.5 text-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000]"
                       : clsx(
@@ -73,6 +73,7 @@ export function MorphicNavbar({
                   href={path}
                   key={path}
                   onClick={(e) => handleNavClick(e, path)}
+                  style={{ fontFamily: "var(--font-clash)" }}
                 >
                   {name}
                 </Link>
