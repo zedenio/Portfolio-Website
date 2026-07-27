@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState, useTransition } from "react";
-import anime from "animejs";
+import { animate } from "animejs";
 
 export function PageTransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -25,8 +25,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     }
 
     if (containerRef.current) {
-      anime({
-        targets: containerRef.current,
+      animate(containerRef.current, {
         opacity: [0, 1],
         translateY: [20, 0],
         duration: 500,
@@ -64,12 +63,11 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
         }
 
         if (containerRef.current) {
-          anime({
-            targets: containerRef.current,
+          animate(containerRef.current, {
             opacity: [1, 0],
             duration: 250,
             easing: "linear",
-            complete: () => {
+            onComplete: () => {
               startTransition(() => {
                 router.push(href);
               });

@@ -4,6 +4,10 @@ import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { LineWavesBackground } from "@/components/background/LineWavesBackground";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { PageTransitionProvider } from "@/components/animations/PageTransitionProvider";
+import { GateProvider } from "@/components/project-gate/GateContext";
+import { ProjectGate } from "@/components/project-gate/ProjectGate";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,15 +32,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} dark`}
+      suppressHydrationWarning
+      className={`${inter.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
-        <LineWavesBackground />
-        <div className="relative z-10">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <ThemeProvider>
+          <GateProvider>
+            <LineWavesBackground />
+            <div className="relative z-10">
+              <Navbar />
+              <main className="flex-1">
+                <PageTransitionProvider>{children}</PageTransitionProvider>
+              </main>
+              <Footer />
+            </div>
+            <ProjectGate />
+          </GateProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

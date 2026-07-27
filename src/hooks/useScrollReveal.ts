@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import anime from "animejs";
+import { animate, stagger } from "animejs";
 
 interface ScrollRevealOptions {
   animationType: "reveal-up" | "fade-in" | "stagger-up";
@@ -58,8 +58,7 @@ export function useScrollReveal({
           observer.unobserve(container);
 
           if (animationType === "reveal-up") {
-            anime({
-              targets: container,
+            animate(container, {
               opacity: [0, 1],
               translateY: [40, 0],
               duration: duration,
@@ -67,8 +66,7 @@ export function useScrollReveal({
               easing: "easeOutExpo",
             });
           } else if (animationType === "fade-in") {
-            anime({
-              targets: container,
+            animate(container, {
               opacity: [0, 1],
               duration: duration,
               delay: delay,
@@ -76,12 +74,11 @@ export function useScrollReveal({
             });
           } else if (animationType === "stagger-up") {
             const items = container.querySelectorAll(".reveal-item");
-            anime({
-              targets: items,
+            animate(items, {
               opacity: [0, 1],
               translateY: [30, 0],
               duration: duration,
-              delay: anime.stagger(staggerDelay, { start: delay }),
+              delay: stagger(staggerDelay, { start: delay }),
               easing: "easeOutExpo",
             });
           }
